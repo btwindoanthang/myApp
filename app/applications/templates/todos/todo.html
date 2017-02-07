@@ -4,6 +4,7 @@
           <!-- message textbox -->
           {{> addTodo}}
           {{/if}}
+          {{> hideCompleted}}
           {{> todosCount}}
     <div class="panel-body">
    
@@ -40,6 +41,12 @@
      </form>       
 </template>
 
+<template name="hideCompleted">
+<label class="hide-completed" style="margin-left: 20px">
+      <input type="checkbox" checked="{{hideCompleted}}" />
+      Hide Completed
+    </label>
+</template>
 <template name="todosCount">
 {{#if totalTodos}}
     <p style="margin-left: 20px">You have completed {{completedTodos}} out of {{totalTodos}} tasks.</p>

@@ -1,7 +1,12 @@
 if(Meteor.isClient){
 	Template.todos.helpers({
     'todo': function(){
+        if(Session.get('hideCompleted')){
+        return Todos.find({completed: true,owner:Meteor.userId()}, {sort: {createdAt: -1}});
+    }else{
         return Todos.find({owner:Meteor.userId()}, {sort: {createdAt: -1}});
+    }
+        
     }
 });
 
@@ -65,10 +70,24 @@ if(Meteor.isClient){
 
 Template.todosCount.helpers({
     'totalTodos': function(){
-    return Todos.find({owner:Meteor.userId()}).count();
+    if(Session.get('hideCompleted')){
+        return Todos.find({completed: true,owner:Meteor.userId()}).count();
+    }else{
+        return Todos.find({owner:Meteor.userId()}).count();
+    }    
+    
 },
     'completedTodos': function(){
     return Todos.find({ completed: true,owner:Meteor.userId() }).count();
 }
 });
+
+Template.hideCompleted.events({
+    'change .hide-completed input': function (event) {
+      Session.set('hideCompleted', event.target.checked);
+    },
+    hideCompleted: function () {
+      return Session.get('hideCompleted');
+    },
+  });
 }
