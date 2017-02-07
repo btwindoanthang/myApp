@@ -1,0 +1,47 @@
+<template name="todos">
+   <div class="col-md-12">
+     {{#if currentUser}}
+          <!-- message textbox -->
+          {{> addTodo}}
+          {{/if}}
+          {{> todosCount}}
+    <div class="panel-body">
+   
+          
+              <!-- message template -->
+
+              {{#each todo}}
+                {{> todoItem}}
+              {{/each}}
+          
+          </div>
+          
+       </div>   
+
+</template>
+
+<template name="todoItem">
+    <li class="list-group-item {{checked}}">
+    <input type="checkbox" {{checked}} >
+    <input type="text" value="{{name}}" name="todoItem">
+    <span class="pull-right">[<a href="#" class="delete-todo">Delete</a>]</span>
+    </li>
+    
+  
+</template>
+
+<template name="addTodo">
+	<form>
+    <div class="panel-footer">
+              <div class="input-group">
+                <input type="text" placeholder="Type a task here..." name="todoName">
+              </div>
+            </div>
+     </form>       
+</template>
+
+<template name="todosCount">
+{{#if totalTodos}}
+    <p style="margin-left: 20px">You have completed {{completedTodos}} out of {{totalTodos}} tasks.</p>
+{{/if}}
+</template>
