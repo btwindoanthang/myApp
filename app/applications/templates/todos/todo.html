@@ -24,8 +24,9 @@
 <template name="todoItem">
     <li class="list-group-item {{checked}}">
     <input type="checkbox" {{checked}} >
-    <input type="text" value="{{name}}" name="todoItem">
-    <span class="pull-right">[<a href="#" class="delete-todo">Delete</a>]</span>
+    <!-- <input type="text" value="{{name}}" name="todoItem"> -->
+    <span name='todoItem'>{{name}}</span>
+    <span class="pull-right">[<a href="#" class="delete-todo"><i class="fa fa-trash-o" aria-hidden="true"></i></a>]</span>
     </li>
     
   
