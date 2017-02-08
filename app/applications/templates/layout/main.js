@@ -16,4 +16,11 @@ if (Meteor.isClient) {
         Meteor.logout();
     }
 });
+    Template.main.helpers({
+    'userName': function(){
+        
+        return Meteor.user().emails[0].address;
+    }
+});
 }
+
